@@ -1,4 +1,4 @@
-package io.chatasticauth.model;
+package io.chatasticlogin.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

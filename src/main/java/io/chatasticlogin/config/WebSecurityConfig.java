@@ -1,4 +1,4 @@
-package io.chatasticauth.config;
+package io.chatasticlogin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

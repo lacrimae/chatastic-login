@@ -1,6 +1,6 @@
-package io.chatasticauth.service;
+package io.chatasticlogin.service;
 
-import io.chatasticauth.DTO.UserDTO;
+import io.chatasticlogin.DTO.UserDTO;
 
 public interface UserService {
 

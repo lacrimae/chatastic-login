@@ -1,9 +1,9 @@
-package io.chatasticauth.service.impl;
+package io.chatasticlogin.service.impl;
 
-import io.chatasticauth.DTO.UserDTO;
-import io.chatasticauth.mapper.UserMapper;
-import io.chatasticauth.repository.UserRepository;
-import io.chatasticauth.service.UserService;
+import io.chatasticlogin.DTO.UserDTO;
+import io.chatasticlogin.mapper.UserMapper;
+import io.chatasticlogin.repository.UserRepository;
+import io.chatasticlogin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

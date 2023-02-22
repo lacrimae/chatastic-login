@@ -1,6 +1,5 @@
-package io.chatasticauth.DTO;
+package io.chatasticlogin.DTO;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

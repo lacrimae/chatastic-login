@@ -1,7 +1,7 @@
-package io.chatasticauth.mapper;
+package io.chatasticlogin.mapper;
 
-import io.chatasticauth.DTO.UserDTO;
-import io.chatasticauth.model.User;
+import io.chatasticlogin.DTO.UserDTO;
+import io.chatasticlogin.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

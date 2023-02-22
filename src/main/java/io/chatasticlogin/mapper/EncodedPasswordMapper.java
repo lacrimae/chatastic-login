@@ -1,4 +1,4 @@
-package io.chatasticauth.mapper;
+package io.chatasticlogin.mapper;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

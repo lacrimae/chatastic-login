@@ -1,6 +1,6 @@
-package io.chatasticauth.repository;
+package io.chatasticlogin.repository;
 
-import io.chatasticauth.model.User;
+import io.chatasticlogin.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

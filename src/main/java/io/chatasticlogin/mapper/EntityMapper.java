@@ -1,4 +1,4 @@
-package io.chatasticauth.mapper;
+package io.chatasticlogin.mapper;
 
 import java.util.List;
 

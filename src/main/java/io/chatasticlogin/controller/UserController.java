@@ -1,7 +1,7 @@
-package io.chatasticauth.controller;
+package io.chatasticlogin.controller;
 
-import io.chatasticauth.DTO.UserDTO;
-import io.chatasticauth.service.UserService;
+import io.chatasticlogin.DTO.UserDTO;
+import io.chatasticlogin.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
