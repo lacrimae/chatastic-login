@@ -1,5 +1,6 @@
 package io.chatasticlogin.mapper;
 
+import io.chatasticlogin.mapper.annotations.EncodedMapping;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 public record EncodedPasswordMapper(PasswordEncoder encoder) {
 
     @EncodedMapping
-    public String encode(final String password) {
+    public String encode(String password) {
         return encoder.encode(password);
     }
 }

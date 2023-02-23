@@ -1,4 +1,4 @@
-package io.chatasticlogin.mapper;
+package io.chatasticlogin.mapper.annotations;
 
 import org.mapstruct.Qualifier;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Qualifier
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.CLASS)
-public @interface EncodedMapping {
+public @interface UUIDGenerator {
 }
