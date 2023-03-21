@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisHash;
 @Builder
 @Getter
 @NoArgsConstructor
-@RedisHash("User")
+@RedisHash("user")
 @Setter
 public class User {
 
@@ -20,4 +20,5 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private boolean enabled = false;
 }
