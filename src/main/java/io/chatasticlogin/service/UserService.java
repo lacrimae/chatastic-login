@@ -4,5 +4,7 @@ import io.chatasticlogin.DTO.UserDTO;
 
 public interface UserService {
 
-    public UserDTO save(UserDTO dto);
+    UserDTO register(UserDTO dto);
+
+    void enable(String id);
 }

@@ -54,7 +54,7 @@ class UserServiceTest {
         when(repository.save(user)).thenReturn(user);
         when(mapper.toDto(any(User.class))).thenReturn(userResponseDTO);
 
-        UserDTO userDTO = userService.save(userRequestDTO);
+        UserDTO userDTO = userService.register(userRequestDTO);
 
         verify(mapper, times(1)).toEntity(any(UserDTO.class));
         verify(repository, times(1)).save(any(User.class));
