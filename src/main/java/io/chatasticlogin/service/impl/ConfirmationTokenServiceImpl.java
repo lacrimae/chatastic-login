@@ -1,5 +1,7 @@
 package io.chatasticlogin.service.impl;
 
+import io.chatasticlogin.exception.EntityNotFoundException;
+import io.chatasticlogin.exception.EntityNotValidException;
 import io.chatasticlogin.model.ConfirmationToken;
 import io.chatasticlogin.repository.ConfirmationTokenRepository;
 import io.chatasticlogin.service.ConfirmationTokenService;
@@ -17,28 +19,23 @@ public class ConfirmationTokenServiceImpl implements ConfirmationTokenService {
     private final UserService userService;
 
     @Override
-    public ConfirmationToken get(String token) {
-        return repository.findByToken(token)
-                // todo: introduce app-specific Exceptions
-                .orElseThrow(() -> new IllegalStateException("Token not found"));
-    }
-
-    @Override
     public void save(ConfirmationToken token) {
         repository.save(token);
     }
 
     @Override
     public String confirm(String token) {
-        ConfirmationToken confirmationToken = get(token);
+        ConfirmationToken confirmationToken = repository.findByToken(token)
+                .orElseThrow(() -> new EntityNotFoundException(token));
 
-        if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("Token already confirmed!");
+        LocalDateTime confirmedAt = confirmationToken.getConfirmedAt();
+        if (confirmedAt != null) {
+            throw new EntityNotValidException(String.format("Token %s already confirmed at %s.", token, confirmedAt));
         }
 
-        if (confirmationToken.getExpiredAt()
-                .isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("Token expired");
+        LocalDateTime expiredAt = confirmationToken.getExpiredAt();
+        if (expiredAt.isBefore(LocalDateTime.now())) {
+            throw new EntityNotValidException(String.format("Token %s expired at %s.", token, expiredAt));
         }
 
         confirmationToken.setConfirmedAt(LocalDateTime.now());
