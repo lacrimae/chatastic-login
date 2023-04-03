@@ -30,6 +30,7 @@ public class RegistrationController {
     }
 
     @GetMapping()
+    @Operation(summary = "Confirm email")
     public String confirm(@RequestParam("token") String token) {
         return tokenService.confirm(token);
     }

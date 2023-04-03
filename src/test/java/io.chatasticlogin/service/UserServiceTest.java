@@ -28,7 +28,7 @@ class UserServiceTest {
     private UserServiceImpl userService;
 
     @Test
-    void shouldSaveUserCorrectly() {
+    void shouldRegisterUserCorrectly() {
         UserDTO userRequestDTO = UserDTO.builder()
                 .email(EMAIL)
                 .nickname(NICKNAME)

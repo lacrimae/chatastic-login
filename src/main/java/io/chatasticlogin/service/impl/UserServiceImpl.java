@@ -35,6 +35,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO register(UserDTO dto) {
+        var userExists = userRepository.findByEmail(dto.getEmail());
+
+        if (userExists.isPresent()) {
+            throw new IllegalStateException("Email already exists.");
+        }
+
         var entity = mapper.toEntity(dto);
         log.debug("Request to save user with uuid: {}", entity.getUuid());
         userRepository.save(entity);
