@@ -25,3 +25,34 @@ The Chatastic Login microservice handles all tasks related to user authenticatio
 email confirmation, and logout. This microservice is designed to be modular, scalable, and easy to integrate with other
 components of the Chatastic app. If you have any questions or issues related to the Login microservice, please feel free
 to open an issue or submit a pull request.
+
+## Run Locally
+
+1. Ensure that Redis is installed on your local machine. If you haven't installed Redis yet, you can follow the
+   instructions on the [Redis download page](https://redis.io/download/) to install it.
+2. Start the Redis server by running the following command in your terminal:
+
+   ```bash
+   redis-server
+   ```
+
+3. Clone the repository and navigate to the project directory:
+
+   ```bash
+   git clone https://github.com/lacrimae/chatastic-login.git
+   cd chatastic-login
+   ```
+
+4. Build and run the application using Gradle by running the following command in your terminal:
+   ```bash
+   ./gradlew bootRun
+   ```
+   This will start the application on http://localhost:8080.
+
+   Alternatively, you can also use the following command to run the application:
+    ```bash
+    gradle bootRun
+    ```
+   > You need to have Gradle installed on your system to use this command. You can download and install Gradle from the
+   [official website](https://gradle.org/install/).
+5. Access the application in your web browser at http://localhost:8080.
