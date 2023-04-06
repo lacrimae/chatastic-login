@@ -8,4 +8,5 @@ public final class TestConstants {
     public static final String FIRST_NAME = "Jonh";
     public static final String LAST_NAME = "Dow";
     public static final String PASSWORD = "test1234";
+    public static final String ENCODED_PASSWORD = "$2a$10$zYiZasb$test";
 }

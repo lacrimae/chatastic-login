@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@Tag(name = "User", description = "The User API")
+@Tag(name = "Registration", description = "The Registration API")
 public class RegistrationController {
 
     private final UserService userService;
@@ -24,7 +24,7 @@ public class RegistrationController {
     @PostMapping
     @Operation(summary = "Register user")
     @JsonView(Views.UserResponseDTO.class)
-    public UserDTO register(@RequestBody @JsonView(Views.UserRequestDTO.class) UserDTO userDTO) {
+    public UserDTO register(@RequestBody @JsonView(Views.UserRegistrationRequestDTO.class) UserDTO userDTO) {
         log.debug("Register user");
         return userService.register(userDTO);
     }

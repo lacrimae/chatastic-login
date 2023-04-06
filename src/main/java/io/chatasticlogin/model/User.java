@@ -3,6 +3,7 @@ package io.chatasticlogin.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 @AllArgsConstructor
 @Builder
@@ -15,6 +16,7 @@ public class User {
     @Id
     private String uuid;
 
+    @Indexed
     private String email;
     private String nickname;
     private String firstName;
