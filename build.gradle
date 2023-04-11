@@ -38,6 +38,9 @@ dependencies {
             "org.projectlombok:lombok:${lombokVersion}",
             'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4',
             'com.fasterxml.jackson.core:jackson-annotations:2.14.2',
+            /* kafka */
+            'org.apache.kafka:kafka-clients:3.4.0',
+            'org.springframework.kafka:spring-kafka:3.0.5',
             /* security */
             'org.springframework.boot:spring-boot-starter-security',
             'org.springframework.security:spring-security-crypto:6.0.2',

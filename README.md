@@ -29,11 +29,33 @@ to open an issue or submit a pull request.
 ## Run Locally
 
 1. Ensure that Redis is installed on your local machine. If you haven't installed Redis yet, you can follow the
-   instructions on the [Redis download page](https://redis.io/download/) to install it.
-2. Start the Redis server by running the following command in your terminal:
+   instructions on the [Redis download page](https://redis.io/download/) to install it.   
+   <br>
+   Start the Redis server by running the following command in your terminal:
 
    ```bash
    redis-server
+   ```
+
+2. Make sure you have Kafka installed on your local machine. If you haven't installed Kafka yet, you can follow the
+   documentation on the [Kafka download page](https://kafka.apache.org/quickstart) to install it.  
+   <br>
+   Once Kafka is installed, start the ZooKeeper server by running the following command in your terminal:
+   ```bash
+   zookeeper-server-start.sh config/zookeeper.properties
+   ```
+   
+   Then, start the Kafka server by running the following command in your terminal:
+
+   ```bash
+   kafka-server-start /usr/local/etc/kafka/server.properties
+   ```
+
+   If you are using `brew`:
+   ```bash
+   brew install kafka
+   /opt/homebrew/opt/kafka/bin/zookeeper-server-start /opt/homebrew/etc/kafka/zookeeper.properties
+   /opt/homebrew/opt/kafka/bin/kafka-server-start /opt/homebrew/etc/kafka/server.properties
    ```
 
 3. Clone the repository and navigate to the project directory:
