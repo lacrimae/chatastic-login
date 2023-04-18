@@ -3,6 +3,7 @@ package io.chatasticlogin.service;
 import io.chatasticlogin.DTO.UserDTO;
 import io.chatasticlogin.exception.EntityNotFoundException;
 import io.chatasticlogin.exception.EntityNotValidException;
+import io.chatasticlogin.kafka.KafkaPublisher;
 import io.chatasticlogin.mapper.UserMapper;
 import io.chatasticlogin.model.ConfirmationToken;
 import io.chatasticlogin.model.User;
@@ -39,6 +40,7 @@ class UserServiceTest {
             .build();
 
     private final static User LOGIN_USER = User.builder().password(ENCODED_PASSWORD).build();
+    private final static User REGISTER_USER = User.builder().email(EMAIL).build();
 
     @Mock
     private UserMapper mapper;
@@ -50,6 +52,8 @@ class UserServiceTest {
     private PasswordEncoder encoder;
     @Mock
     private EmailService emailService;
+    @Mock
+    private KafkaPublisher kafkaPublisher;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -106,7 +110,7 @@ class UserServiceTest {
                 .firstName(FIRST_NAME)
                 .lastName(LAST_NAME)
                 .build();
-        when(userRepository.findByEmail(EMAIL)).thenReturn(Optional.of(user));
+        when(userRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
         when(mapper.toEntity(userRequestDTO)).thenReturn(user);
         when(userRepository.save(user)).thenReturn(user);
         when(confirmationTokenRepository.save(any(ConfirmationToken.class))).thenReturn(any());
@@ -127,10 +131,10 @@ class UserServiceTest {
 
     @Test
     void registerShouldThrowExceptionEmailExists() {
-        when(userRepository.findByEmail(EMAIL)).thenReturn(Optional.empty());
+        when(userRepository.findByEmail(EMAIL)).thenReturn(Optional.of(REGISTER_USER));
 
         assertThrows(EntityNotValidException.class, () -> userService.register(REGISTER_USER_DTO),
-                String.format("Email %s does not exist.", REGISTER_USER_DTO.getEmail()));
+                String.format("Email %s already exist.", REGISTER_USER_DTO.getEmail()));
     }
 
     @Test

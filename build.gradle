@@ -29,7 +29,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'it.ozimov:embedded-redis:0.7.3'
+    testImplementation 'it.ozimov:embedded-redis:0.7.3',
+            'org.testcontainers:kafka:1.18.0',
+            'org.testcontainers:testcontainers:1.18.0',
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.springframework.boot:spring-boot-starter-mail:3.0.4'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.0.4',
             'redis.clients:jedis:4.3.1',
             'org.springframework.data:spring-data-redis:3.0.4',
@@ -44,8 +48,6 @@ dependencies {
             /* security */
             'org.springframework.boot:spring-boot-starter-security',
             'org.springframework.security:spring-security-crypto:6.0.2',
-            /* test */
-            'org.springframework.boot:spring-boot-starter-test',
             'org.springframework.boot:spring-boot-starter-mail:3.0.4'
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}",
             "org.projectlombok:lombok:${lombokVersion}",

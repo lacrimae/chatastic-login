@@ -44,7 +44,7 @@ to open an issue or submit a pull request.
    ```bash
    zookeeper-server-start.sh config/zookeeper.properties
    ```
-   
+
    Then, start the Kafka server by running the following command in your terminal:
 
    ```bash
@@ -78,3 +78,27 @@ to open an issue or submit a pull request.
    > You need to have Gradle installed on your system to use this command. You can download and install Gradle from the
    [official website](https://gradle.org/install/).
 5. Access the application in your web browser at http://localhost:8080.
+
+## Kafka Commands
+
+You can use the following commands to list and get details about Kafka topics:
+
+1. List all topics in the Kafka cluster:
+
+   ```bash
+   ./path-to-kafka/bin/kafka-topics --bootstrap-server=localhost:9092 --list
+   ```
+
+2. Get details about a specific topic:
+
+   ```bash
+   ./path-to-kafka/bin/kafka-topics --bootstrap-server=localhost:9092 --describe --topic users
+   ```
+3. Use the `kafka-console-consumer` tool to view the data of a Kafka topic from the command line:
+
+   ```bash
+   ./path-to-kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic users --from-beginning
+   ```
+
+Replace /path-to-kafka with the actual path to your Kafka installation directory. Running these commands will give you a
+list of topics or details about a specific topic, such as the number of partitions and their replication factor.

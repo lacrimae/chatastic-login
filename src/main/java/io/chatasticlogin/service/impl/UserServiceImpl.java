@@ -3,6 +3,7 @@ package io.chatasticlogin.service.impl;
 import io.chatasticlogin.DTO.UserDTO;
 import io.chatasticlogin.exception.EntityNotFoundException;
 import io.chatasticlogin.exception.EntityNotValidException;
+import io.chatasticlogin.kafka.KafkaPublisher;
 import io.chatasticlogin.mapper.UserMapper;
 import io.chatasticlogin.model.ConfirmationToken;
 import io.chatasticlogin.model.User;
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
     private final ConfirmationTokenRepository confirmationTokenRepository;
     private final EmailService emailService;
     private final PasswordEncoder encoder;
+    private final KafkaPublisher kafkaPublisher;
 
     @Override
     public UserDTO login(UserDTO dto) {
@@ -72,8 +74,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO register(UserDTO dto) {
         var userExists = userRepository.findByEmail(dto.getEmail());
 
-        if (userExists.isEmpty()) {
-            throw new EntityNotValidException(String.format("Email %s does not exist.", dto.getEmail()));
+        if (userExists.isPresent()) {
+            throw new EntityNotValidException(String.format("Email %s already exists.", dto.getEmail()));
         }
 
         var entity = mapper.toEntity(dto);
@@ -98,6 +100,8 @@ public class UserServiceImpl implements UserService {
 
         user.setEnabled(true);
         userRepository.save(user);
+        // Todo: Avro scheme for message.
+        kafkaPublisher.publish("users", "Hello world");
 
         return mapper.toDto(user);
     }
