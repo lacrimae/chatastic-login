@@ -22,11 +22,12 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    all*.exclude module: 'logback-classic'
+//    all*.exclude module: 'logback-classic'
 }
 
 repositories {
     mavenCentral()
+    maven { url "https://packages.confluent.io/maven/" }
 }
 
 dependencies {
@@ -46,6 +47,7 @@ dependencies {
             /* kafka */
             'org.apache.kafka:kafka-clients:3.4.0',
             'org.springframework.kafka:spring-kafka:3.0.5',
+            'io.confluent:kafka-protobuf-serializer:7.3.3',
             /* security */
             'org.springframework.boot:spring-boot-starter-security',
             'org.springframework.security:spring-security-crypto:6.0.2',

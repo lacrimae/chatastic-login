@@ -3,7 +3,7 @@ package io.chatasticlogin.service;
 import io.chatasticlogin.DTO.UserDTO;
 import io.chatasticlogin.exception.EntityNotFoundException;
 import io.chatasticlogin.exception.EntityNotValidException;
-import io.chatasticlogin.kafka.KafkaPublisher;
+import io.chatasticlogin.kafka.KafkaUserPublisher;
 import io.chatasticlogin.mapper.UserMapper;
 import io.chatasticlogin.model.ConfirmationToken;
 import io.chatasticlogin.model.User;
@@ -53,7 +53,7 @@ class UserServiceTest {
     @Mock
     private EmailService emailService;
     @Mock
-    private KafkaPublisher kafkaPublisher;
+    private KafkaUserPublisher kafkaUserPublisher;
 
     @InjectMocks
     private UserServiceImpl userService;

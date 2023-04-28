@@ -3,7 +3,7 @@ package io.chatasticlogin.service.impl;
 import io.chatasticlogin.DTO.UserDTO;
 import io.chatasticlogin.exception.EntityNotFoundException;
 import io.chatasticlogin.exception.EntityNotValidException;
-import io.chatasticlogin.kafka.KafkaPublisher;
+import io.chatasticlogin.kafka.KafkaUserPublisher;
 import io.chatasticlogin.mapper.UserMapper;
 import io.chatasticlogin.model.ConfirmationToken;
 import io.chatasticlogin.model.User;
@@ -11,6 +11,7 @@ import io.chatasticlogin.repository.ConfirmationTokenRepository;
 import io.chatasticlogin.repository.UserRepository;
 import io.chatasticlogin.service.EmailService;
 import io.chatasticlogin.service.UserService;
+import lacrimae.chatasticlogin.kafka.proto.UserMessageOuterClass.UserMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
     private final ConfirmationTokenRepository confirmationTokenRepository;
     private final EmailService emailService;
     private final PasswordEncoder encoder;
-    private final KafkaPublisher kafkaPublisher;
+    private final KafkaUserPublisher kafkaUserPublisher;
 
     @Override
     public UserDTO login(UserDTO dto) {
@@ -100,8 +101,12 @@ public class UserServiceImpl implements UserService {
 
         user.setEnabled(true);
         userRepository.save(user);
-        // Todo: Avro scheme for message.
-        kafkaPublisher.publish("users", "Hello world");
+
+        UserMessage userMessage = UserMessage.newBuilder()
+                .setUuid(user.getUuid())
+                .setNickname(user.getNickname())
+                .build();
+        kafkaUserPublisher.publish("users", UUID.randomUUID().toString(), userMessage);
 
         return mapper.toDto(user);
     }
